@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../css/estilos.css">
+</head>
+
+<body>
+    <img src="../../img/ex8_4.jpg" alt="Pizzaria" class="normal">
+    <h1>Pizzaria Avenida - Controle de Pedidos</h1>
+    <form>
+        <p>Item do Pedido:
+            <input type="radio" name="produto" id="rbPizza" checked autofocus> Pizza
+            <input type="radio" name="produto" id="rbBebida"> Bebida
+            <span>Item:</span>
+            <select id="idPizza">
+                <option value="media">Pizza Média</option>
+                <option value="grande">Pizza Grande</option>
+                <option value="familia">Pizza Familia</option>
+            </select>
+            <select id="idBebida" class="oculta">
+                <option value="refri">Refrigerante</option>
+                <option value="suco">Suco</option>
+                <option value="agua">Água Mineral</option>
+            </select>
+        </p>
+        <p>Detalhes do Item:
+            <input type="text" id="idDetalhes" class="detalhes">
+            <input type="submit" value="Adicionar">
+        </p>
+    </form>
+    <pre></pre>
+    <script src="ex08_04.js"></script>
+</body>
+
+</html>

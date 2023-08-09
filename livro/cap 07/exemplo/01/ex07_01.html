@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        const anuncio = prompt("Anúncio: ")
+        let numPalavras = 0
+        const tam = anuncio.length
+        for (let i = 0; i < tam; i++) {
+            if (anuncio.charAt(i) == " ") {
+                numPalavras++
+            }
+        }
+        alert(`Anúncio: ${anuncio}\nN° Palavras ${(numPalavras + 1)}`)
+
+        /*
+            let numPalavras = 0
+            for (const letra of anuncio) {
+                if (letra == " "){
+                    numPalavras++
+                }
+            }
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

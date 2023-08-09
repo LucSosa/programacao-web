@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./App.css"
 
 function App() {
   const [cor, setCor] = useState("vermelha.png")
@@ -19,11 +20,11 @@ function App() {
 
   return (
     <>
-      <h1>Escola de Trânsito</h1>
+      <h1 className="titulo">Escola de Trânsito</h1>
       <h2>Aula sobre sinaleira</h2>
       <hr />
       <img src={cor} alt="vermelha" width={200} onClick={trocaSinaleira} />
-      <h2>{aviso}</h2>
+      <h2 className="titulo">{aviso}</h2>
       <h4><i>* Clique sobre a sinaleira para trocar de cor * </i></h4>
     </>
   )

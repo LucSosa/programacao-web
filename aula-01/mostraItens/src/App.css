@@ -1,0 +1,37 @@
+.App {
+    text-align: center;
+    padding: 20px;
+}
+
+.image-container {
+    margin: 20px;
+}
+
+.featured-image {
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    /* border: 2px solid #333; */
+    border-radius: 5px;
+}
+
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.thumbnail.active {
+    border-color: #333;
+}

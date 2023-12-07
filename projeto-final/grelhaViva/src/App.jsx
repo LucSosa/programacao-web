@@ -41,19 +41,32 @@ export default function App() {
 
     function toggleMobileMenu() {
         setIsMobileMenuOpen((prevState) => !prevState);
-        console.log("isMobileMenuOpen:", isMobileMenuOpen);
     }
 
+    function getStatusColorClass(status) {
+        switch (status) {
+            case 'Aprovado':
+                return 'bg-green-700 dark:bg-green-700';
+            case 'Pendente':
+                return 'bg-yellow-200 dark:bg-yellow-700';
+            case 'Reprovado':
+                return 'bg-red-700 dark:bg-red-700';
+            default:
+                return '';
+        }
+    }
+
+
     const listaPedidos = dados.map((dado, i) => (
-        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 "
             key={dado.id}>
-            <th scope="row" className="px-6 py-4 font-medium  whitespace-nowrap dark:text-white">
+            <th scope="row" className=" hidden md:table-cell px-6 py-4 font-medium  whitespace-nowrap dark:text-white">
                 {dado.nome}
             </th>
-            <td className="px-6 py-4">
+            <td className=" hidden md:table-cell px-6 py-4">
                 {dado.email}
             </td>
-            <td className="px-6 py-4">
+            <td className={`px-6 py-4 text-white rounded-md   ${getStatusColorClass(dado.status)}`}>
                 {dado.status}
             </td>
             <td className="px-6 py-4">
@@ -93,46 +106,8 @@ export default function App() {
     return (
         <>
             <div className={` ${isDarkMode ? 'dark' : ''}`}>
-                <div className="grid grid-cols-5 h-screen">
-                    <nav className="col-span-1 fixed top-0 z-50 w-full bg-red-900 dark:bg-red-900 dark:border-b">
-                        <div className="px-6 py-6 lg:px-6 lg:pl-3">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center justify-start rtl:justify-end">
-                                    <button
-                                        data-drawer-target="logo-sidebar"
-                                        data-drawer-toggle="logo-sidebar"
-                                        aria-controls="logo-sidebar"
-                                        type="button"
-                                        className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                                        onClick={() => {
-                                            console.log("Toggle Mobile Menu clicado");
-                                            toggleMobileMenu();
-                                        }}
-                                    >
-
-                                        <span className="sr-only">Open sidebar</span>
-                                        <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                                        </svg>
-                                    </button>
-                                    <a href="#" className="flex ms-2 md:me-24">
-                                        <img src="/grelhaViva.png" className="h-8 me-3" alt="Grelha Viva Logo" />
-                                    </a>
-                                </div>
-                                <div className="flex items-center">
-                                    <div className="flex items-center ms-3">
-
-                                        <div className="hidden lg:flex lg:flex-1 lg:justify-end" style="border: 1px solid white; padding: 8px;">
-                                            <a href="#" className="text-sm font-semibold leading-6 text-white">
-                                                Adicionar Pedido <span aria-hidden="true">+</span>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+                <div className="grid xl:grid-cols-5 h-screen">
+                    <Header toggleMobileMenu={toggleMobileMenu} />
                     <div className="flex">
                         <aside id="logo-sidebar"
                             className="col-span-1 fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform 
@@ -189,16 +164,16 @@ export default function App() {
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3  hidden md:table-cell">
                                         Nome
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-6 py-3  hidden md:table-cell">
                                         E-mail
                                     </th>
-                                    <th scope="col" className="px-6 py-3 hidden md:table-cell">
+                                    <th scope="col" className="px-6 py-3">
                                         Status
                                     </th>
-                                    <th scope="col" className="px-6 py-3 hidden md:table-cell">
+                                    <th scope="col" className="px-6 py-3">
                                         Pedido
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -220,8 +195,9 @@ export default function App() {
                 <Modal open={true} onClose={closePedidoModal} center>
                     <>
                         <div className="bg-white p-8 rounded-lg shadow-md">
-                            <h1 className="text-2xl font-bold mb-4">{selectedPedido.descricao}</h1>
-                            <p className="text-gray-700">{selectedPedido.id}</p>
+                            <p className="text-gray-700">ID do Pedido: {selectedPedido.id}</p>
+                            <h2 className='text-sm font-bold'>Pedido: {selectedPedido.pedido}</h2>
+                            <h1 className="text-2xl font-bold">Descrição da receita: {selectedPedido.descricao}</h1>
                         </div>
                     </>
                 </Modal>
